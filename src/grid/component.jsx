@@ -24,16 +24,17 @@ function hexToPixel(hex, size) {
 export default function Grid({grid, renderCell}) {
   const size = 20;
   const map_radius = size + (2 * grid.radius * size);
+  const a = 500;
   return (
-    <svg height="400" width="400">
-      <g transform="translate(200 200) scale(0.5)">
+    <svg height={a} width={a}>
+      <g transform={`translate(${a/2} ${a/2}) scale(0.5)`}>
         <svg overflow="visible" viewBox={`0 0 ${map_radius} ${map_radius}`} >
           <defs>
             <clipPath id="clip">
-              <polygon points={ hexPoints(size - 1) } />
+              <polygon points={ hexPoints(size) } />
             </clipPath>
             <g id="sub">
-              <polygon points={ hexPoints(size) } fill="white" stroke="black" />
+              <polygon points={ hexPoints(size) } fill="white" stroke="black" strokeWidth=".5" />
             </g>
           </defs>
           {grid.cells.map( (c) => {
@@ -44,9 +45,7 @@ export default function Grid({grid, renderCell}) {
                  <use href="#sub" />
                  <g clipPath="url(#clip)" >
                    <svg overflow="visible" height={size} width={size} >
-                     <g  onClick={() => alert()}>
                        {elem}
-                     </g>
                    </svg>
                  </g>
                </g>
