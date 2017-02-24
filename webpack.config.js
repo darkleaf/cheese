@@ -14,6 +14,8 @@ module.exports = {
     // bundle the client for hot reloading
     // only- means to only hot reload for successful updates
 
+    'babel-polyfill',
+
     './src/index.js',
     // the entry point of our app
   ],
@@ -29,6 +31,10 @@ module.exports = {
   },
 
   devtool: 'inline-source-map',
+
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
 
   module: {
     rules: [
